@@ -7,51 +7,48 @@ using Quiz.DAL;
 
 namespace Quiz.BL
 {
-    public class Logica
+    public class Logica : DBContextCF
     {
+        private Datos_Persona DatoPersona = new Datos_Persona(); 
+
+        private Direccion DatoDireccion  = new Direccion();
+
         //Metodo para insertar Personas
-        public static int AgregarPersona(Datos_Persona persona)
+        public void AgregarPersona(Datos_Persona persona)
         {
-            DBContextCF contexto = null;
-            try
-            {
-                contexto = new DBContextCF();
-                contexto.Personas.Add(persona);
-                contexto.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                if (contexto != null)
-                    contexto.Dispose();
-            }
+            using (DBContextCF context = new DBContextCF())
+                try
+                {
 
-            return 1;
+                    context.Personas.Add(persona);
+                    context.SaveChanges();
+
+                }
+                catch (Exception exp)
+                {
+
+                    var p_error = ("Error Insertar Persona: " + exp.Message);
+                    
+                }
+            
         }
-        //Metodo para insertar Direcciones
-        public static int AgregarDireccion(Direccion direccion)
-        {
-            DBContextCF contexto = null;
-            try
-            {
-                contexto = new DBContextCF();
-                contexto.Direcciones.Add(direccion);
-                contexto.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                if (contexto != null)
-                    contexto.Dispose();
-            }
 
-            return 1;
+        //Metodo para insertar Direcciones
+        public static void AgregarDireccion(Direccion direccion)
+        {
+            using (DBContextCF context = new DBContextCF())
+                try
+                {
+                    
+                    context.Direcciones.Add(direccion);
+                    context.SaveChanges();
+                }
+                catch (Exception exp)
+                {
+
+                    Console.WriteLine("Error Insertar Direccion: " + exp.Message);
+                }
+            
         }
 
         //Metodo para Actualizar Personas
@@ -96,6 +93,7 @@ namespace Quiz.BL
                     Console.WriteLine("Error Actualizar Direccion: " + exp.Message);
                 }
         }
+       
         //Metodo para eliminar Personas
         public static void EliminarPersona(int idremove)
         {
@@ -112,6 +110,7 @@ namespace Quiz.BL
                     Console.WriteLine("Error Eliminar Persona: " + exp.Message);
                 }
         }
+        
         //Metodo para eliminar Direcciones
         public static void EliminarDireccion(int idremovedir,int idremoveper)
         {
