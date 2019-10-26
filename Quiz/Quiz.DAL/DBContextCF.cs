@@ -17,9 +17,9 @@ namespace Quiz.DAL
 
         }
         //Referencia a las tablas que se van a crear 
-        public virtual DbSet<Datos_Persona> Personas { get; set; }
+        public  DbSet<Datos_Persona> Personas { get; set; }
 
-        public virtual DbSet<Direccion> Direcciones { get; set; }
+        public  DbSet<Direccion> Direcciones { get; set; }
 
     }
 }
