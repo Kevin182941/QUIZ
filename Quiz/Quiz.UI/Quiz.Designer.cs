@@ -1,4 +1,4 @@
-﻿namespace Quiz.BIN
+﻿namespace Quiz.UI
 {
     partial class Quiz
     {
@@ -59,15 +59,11 @@
             this.txtDetalle = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnLimpiarD = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnLimpiar = new System.Windows.Forms.Button();
-            this.btnLimpiarD = new System.Windows.Forms.Button();
             this.ID_Direccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID_Persona = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Pais = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -75,6 +71,10 @@
             this.Canton = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Distrito = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Detalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPersonas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dvgDirecciones)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -87,7 +87,6 @@
             // 
             this.dgvPersonas.AllowUserToAddRows = false;
             this.dgvPersonas.AllowUserToDeleteRows = false;
-            this.dgvPersonas.AllowUserToOrderColumns = true;
             this.dgvPersonas.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dgvPersonas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPersonas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -96,14 +95,13 @@
             this.Apellido,
             this.Telefono});
             this.dgvPersonas.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.dgvPersonas.Location = new System.Drawing.Point(6, 22);
+            this.dgvPersonas.Location = new System.Drawing.Point(17, 22);
             this.dgvPersonas.Name = "dgvPersonas";
             this.dgvPersonas.ReadOnly = true;
             this.dgvPersonas.RowHeadersVisible = false;
-            this.dgvPersonas.Size = new System.Drawing.Size(445, 203);
+            this.dgvPersonas.Size = new System.Drawing.Size(406, 203);
             this.dgvPersonas.TabIndex = 0;
             this.dgvPersonas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPersonas_CellClick);
-            this.dgvPersonas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPersonas_CellContentClick);
             // 
             // dvgDirecciones
             // 
@@ -129,7 +127,6 @@
             this.dvgDirecciones.Size = new System.Drawing.Size(574, 346);
             this.dvgDirecciones.TabIndex = 1;
             this.dvgDirecciones.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dvgDirecciones_CellClick);
-            this.dvgDirecciones.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dvgDirecciones_CellContentClick);
             // 
             // btnInsertarP
             // 
@@ -265,6 +262,7 @@
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(189, 25);
             this.txtTelefono.TabIndex = 17;
+            this.txtTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTelefono_KeyPress);
             // 
             // label9
             // 
@@ -418,12 +416,24 @@
             this.groupBox2.Controls.Add(this.btnEliminar);
             this.groupBox2.Controls.Add(this.btnActualizarP);
             this.groupBox2.Controls.Add(this.btnInsertarP);
-            this.groupBox2.Location = new System.Drawing.Point(466, 22);
+            this.groupBox2.Location = new System.Drawing.Point(432, 22);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(382, 203);
             this.groupBox2.TabIndex = 32;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Mantenimiento";
+            // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnLimpiar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpiar.Location = new System.Drawing.Point(283, 165);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(80, 32);
+            this.btnLimpiar.TabIndex = 18;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = false;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // groupBox3
             // 
@@ -453,15 +463,27 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Mantenimiento";
             // 
+            // btnLimpiarD
+            // 
+            this.btnLimpiarD.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnLimpiarD.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpiarD.Location = new System.Drawing.Point(275, 285);
+            this.btnLimpiarD.Name = "btnLimpiarD";
+            this.btnLimpiarD.Size = new System.Drawing.Size(80, 32);
+            this.btnLimpiarD.TabIndex = 32;
+            this.btnLimpiarD.Text = "Limpiar";
+            this.btnLimpiarD.UseVisualStyleBackColor = false;
+            this.btnLimpiarD.Click += new System.EventHandler(this.btnLimpiarD_Click);
+            // 
             // groupBox4
             // 
             this.groupBox4.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.groupBox4.Controls.Add(this.groupBox2);
             this.groupBox4.Controls.Add(this.dgvPersonas);
             this.groupBox4.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(73, 4);
+            this.groupBox4.Location = new System.Drawing.Point(85, 4);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(856, 235);
+            this.groupBox4.Size = new System.Drawing.Size(830, 235);
             this.groupBox4.TabIndex = 34;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Datos personas";
@@ -479,66 +501,9 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Direcciones";
             // 
-            // ID
-            // 
-            this.ID.DataPropertyName = "ID";
-            this.ID.Frozen = true;
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            // 
-            // Nombre
-            // 
-            this.Nombre.DataPropertyName = "Nombre";
-            this.Nombre.Frozen = true;
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            // 
-            // Apellido
-            // 
-            this.Apellido.DataPropertyName = "Apellido";
-            this.Apellido.Frozen = true;
-            this.Apellido.HeaderText = "Apellido";
-            this.Apellido.Name = "Apellido";
-            this.Apellido.ReadOnly = true;
-            // 
-            // Telefono
-            // 
-            this.Telefono.DataPropertyName = "Telefono";
-            this.Telefono.Frozen = true;
-            this.Telefono.HeaderText = "Telefono";
-            this.Telefono.Name = "Telefono";
-            this.Telefono.ReadOnly = true;
-            // 
-            // btnLimpiar
-            // 
-            this.btnLimpiar.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnLimpiar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpiar.Location = new System.Drawing.Point(283, 165);
-            this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(80, 32);
-            this.btnLimpiar.TabIndex = 18;
-            this.btnLimpiar.Text = "Limpiar";
-            this.btnLimpiar.UseVisualStyleBackColor = false;
-            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
-            // 
-            // btnLimpiarD
-            // 
-            this.btnLimpiarD.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnLimpiarD.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpiarD.Location = new System.Drawing.Point(275, 285);
-            this.btnLimpiarD.Name = "btnLimpiarD";
-            this.btnLimpiarD.Size = new System.Drawing.Size(80, 32);
-            this.btnLimpiarD.TabIndex = 32;
-            this.btnLimpiarD.Text = "Limpiar";
-            this.btnLimpiarD.UseVisualStyleBackColor = false;
-            this.btnLimpiarD.Click += new System.EventHandler(this.btnLimpiarD_Click);
-            // 
             // ID_Direccion
             // 
             this.ID_Direccion.DataPropertyName = "ID";
-            this.ID_Direccion.Frozen = true;
             this.ID_Direccion.HeaderText = "Dirección";
             this.ID_Direccion.Name = "ID_Direccion";
             this.ID_Direccion.ReadOnly = true;
@@ -547,7 +512,6 @@
             // ID_Persona
             // 
             this.ID_Persona.DataPropertyName = "IDPersona";
-            this.ID_Persona.Frozen = true;
             this.ID_Persona.HeaderText = "Persona";
             this.ID_Persona.Name = "ID_Persona";
             this.ID_Persona.ReadOnly = true;
@@ -556,7 +520,6 @@
             // Pais
             // 
             this.Pais.DataPropertyName = "Pais";
-            this.Pais.Frozen = true;
             this.Pais.HeaderText = "País";
             this.Pais.Name = "Pais";
             this.Pais.ReadOnly = true;
@@ -565,7 +528,6 @@
             // Provincia
             // 
             this.Provincia.DataPropertyName = "Provincia";
-            this.Provincia.Frozen = true;
             this.Provincia.HeaderText = "Provincia";
             this.Provincia.Name = "Provincia";
             this.Provincia.ReadOnly = true;
@@ -574,7 +536,6 @@
             // Canton
             // 
             this.Canton.DataPropertyName = "Canton";
-            this.Canton.Frozen = true;
             this.Canton.HeaderText = "Cantón";
             this.Canton.Name = "Canton";
             this.Canton.ReadOnly = true;
@@ -583,7 +544,6 @@
             // Distrito
             // 
             this.Distrito.DataPropertyName = "Distrito";
-            this.Distrito.Frozen = true;
             this.Distrito.HeaderText = "Distrito";
             this.Distrito.Name = "Distrito";
             this.Distrito.ReadOnly = true;
@@ -592,11 +552,38 @@
             // Detalle
             // 
             this.Detalle.DataPropertyName = "Detalle";
-            this.Detalle.Frozen = true;
             this.Detalle.HeaderText = "Detalle";
             this.Detalle.Name = "Detalle";
             this.Detalle.ReadOnly = true;
             this.Detalle.Width = 94;
+            // 
+            // ID
+            // 
+            this.ID.DataPropertyName = "ID";
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            // 
+            // Nombre
+            // 
+            this.Nombre.DataPropertyName = "Nombre";
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            // 
+            // Apellido
+            // 
+            this.Apellido.DataPropertyName = "Apellido";
+            this.Apellido.HeaderText = "Apellido";
+            this.Apellido.Name = "Apellido";
+            this.Apellido.ReadOnly = true;
+            // 
+            // Telefono
+            // 
+            this.Telefono.DataPropertyName = "Telefono";
+            this.Telefono.HeaderText = "Telefono";
+            this.Telefono.Name = "Telefono";
+            this.Telefono.ReadOnly = true;
             // 
             // Quiz
             // 
@@ -604,6 +591,8 @@
             this.ClientSize = new System.Drawing.Size(1005, 623);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Quiz";
             this.Text = "Quiz";
             this.Load += new System.EventHandler(this.Quiz_Load);
@@ -623,7 +612,6 @@
 
         
         private System.Windows.Forms.DataGridView dgvPersonas;
-        private System.Windows.Forms.DataGridView dvgDirecciones;
         private System.Windows.Forms.Button btnInsertarP;
         private System.Windows.Forms.Button btnActualizarP;
         private System.Windows.Forms.Button btnEliminar;
@@ -656,12 +644,13 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.Button btnLimpiarD;
+        private System.Windows.Forms.DataGridView dvgDirecciones;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Apellido;
         private System.Windows.Forms.DataGridViewTextBoxColumn Telefono;
-        private System.Windows.Forms.Button btnLimpiar;
-        private System.Windows.Forms.Button btnLimpiarD;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID_Direccion;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID_Persona;
         private System.Windows.Forms.DataGridViewTextBoxColumn Pais;

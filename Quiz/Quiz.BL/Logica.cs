@@ -10,7 +10,7 @@ namespace Quiz.BL
 {
     public class Logica
     {
-      
+        #region Persona
         //Metodo para insertar Personas
         public static string AgregarPersona(string nombre, string apellido, int telefono)
         {
@@ -37,36 +37,6 @@ namespace Quiz.BL
 
         }
 
-        //Metodo para insertar Direcciones
-        public static string AgregarDireccion(int iddireccion, int idpersona, string pais, string provincia,
-                                              string canton, string distrito, string detalle)
-        {
-            using (DBContextCF context = new DBContextCF())
-                try
-                {
-
-                    var direccion = new Direccion();
-                    direccion.ID = iddireccion;
-                    direccion.IDPersona = idpersona;
-                    direccion.Pais = pais;
-                    direccion.Provincia = provincia;
-                    direccion.Canton = canton;
-                    direccion.Distrito = distrito;
-                    direccion.Detalle = detalle;
-                    context.Direcciones.Add(direccion);
-                    context.SaveChanges();
-                    return "";
-
-                }
-                catch (Exception exp)
-                {
-
-                    return ("Error Insertar Direccion: " + exp.Message);
-
-                }
-
-        }
-
         //Metodo para Actualizar Personas
         public static string ActualizaPersona(int id, string nombre, string apellido, int telefono)
         {
@@ -88,30 +58,6 @@ namespace Quiz.BL
                 }
         }
 
-        //Metodo para Actualizar Direciones
-        public static string ActualizaDirecciones(int id, int idpersona, string pais, string provincia, string canton, string distrito, string detalle)
-        {
-            using (DBContextCF context = new DBContextCF())
-                try
-                {
-                    var direcciones = context.Direcciones.Where(x => x.ID == id && x.IDPersona == idpersona).SingleOrDefault();
-                    direcciones.ID = id;
-                    direcciones.IDPersona = idpersona;
-                    direcciones.Pais = pais;
-                    direcciones.Provincia = provincia;
-                    direcciones.Canton = canton;
-                    direcciones.Distrito = distrito;
-                    direcciones.Detalle = detalle;
-                    context.SaveChanges();
-                    return "";
-                }
-                catch (Exception exp)
-                {
-
-                    return ("Error Actualizar Direccion: " + exp.Message);
-                }
-        }
-
         //Metodo para eliminar Personas
         public static string EliminarPersona(int idremove)
         {
@@ -130,24 +76,7 @@ namespace Quiz.BL
                 }
         }
 
-        //Metodo para eliminar Direcciones
-        public static string EliminarDireccion(int idremovedir, int idremoveper)
-        {
-            using (DBContextCF context = new DBContextCF())
-                try
-                {
-                    var direc = context.Direcciones.Where(x => x.ID == idremovedir && x.IDPersona == idremoveper).SingleOrDefault();
-                    context.Direcciones.Remove(direc);
-                    context.SaveChanges();
-                    return "";
-                }
-                catch (Exception exp)
-                {
-
-                    return ("Error Eliminar Direccion: " + exp.Message);
-                }
-        }
-
+        //Metodo para obtener todas las personas de la base de datos
         public static List<Datos_Persona> ObtenerPersonas()
         {
             DBContextCF contextCF = null;
@@ -186,7 +115,83 @@ namespace Quiz.BL
             return lstresultados;
 
         }
+        #endregion
 
+        #region Direccion
+
+        //Metodo para insertar Direcciones
+        public static string AgregarDireccion(int iddireccion, int idpersona, string pais, string provincia,
+                                              string canton, string distrito, string detalle)
+        {
+            using (DBContextCF context = new DBContextCF())
+                try
+                {
+
+                    var direccion = new Direccion();
+                    direccion.ID = iddireccion;
+                    direccion.IDPersona = idpersona;
+                    direccion.Pais = pais;
+                    direccion.Provincia = provincia;
+                    direccion.Canton = canton;
+                    direccion.Distrito = distrito;
+                    direccion.Detalle = detalle;
+                    context.Direcciones.Add(direccion);
+                    context.SaveChanges();
+                    return "";
+
+                }
+                catch (Exception exp)
+                {
+
+                    return ("Error Insertar Direccion: " + exp.Message);
+
+                }
+
+        }
+
+        //Metodo para Actualizar Direciones
+        public static string ActualizaDirecciones(int id, int idpersona, string pais, string provincia, string canton, string distrito, string detalle)
+        {
+            using (DBContextCF context = new DBContextCF())
+                try
+                {
+                    var direcciones = context.Direcciones.Where(x => x.ID == id && x.IDPersona == idpersona).SingleOrDefault();
+                    direcciones.ID = id;
+                    direcciones.IDPersona = idpersona;
+                    direcciones.Pais = pais;
+                    direcciones.Provincia = provincia;
+                    direcciones.Canton = canton;
+                    direcciones.Distrito = distrito;
+                    direcciones.Detalle = detalle;
+                    context.SaveChanges();
+                    return "";
+                }
+                catch (Exception exp)
+                {
+
+                    return ("Error Actualizar Direccion: " + exp.Message);
+                }
+        }
+
+        //Metodo para eliminar Direcciones
+        public static string EliminarDireccion(int idremovedir, int idremoveper)
+        {
+            using (DBContextCF context = new DBContextCF())
+                try
+                {
+                    var direc = context.Direcciones.Where(x => x.ID == idremovedir && x.IDPersona == idremoveper).SingleOrDefault();
+                    context.Direcciones.Remove(direc);
+                    context.SaveChanges();
+                    return "";
+                }
+                catch (Exception exp)
+                {
+
+                    return ("Error Eliminar Direccion: " + exp.Message);
+                }
+        }
+
+        //Metodo para obtener las direcciones dependiendo la persona de la base de datos
         public static List<Direccion> ObtenerDirecciones(int id_persona)
         {
             DBContextCF contextCF = null;
@@ -231,9 +236,7 @@ namespace Quiz.BL
             return lstresultados;
 
         }
+        #endregion
 
     }
-
-    
-
 }
